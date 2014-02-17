@@ -50,11 +50,11 @@
      <Compile Include="assets\Scripts\CastFireball.cs" />
      <Compile Include="assets\Scripts\Destroy.cs" />
      <Compile Include="assets\Scripts\EnemyController.cs" />
-     <Compile Include="assets\Scripts\Fireball.cs" />
      <Compile Include="assets\Scripts\GameManager.cs" />
      <Compile Include="assets\Scripts\LimiterMovement.cs" />
      <Compile Include="assets\Scripts\PlayerAudio.cs" />
      <Compile Include="assets\Scripts\PlayerController.cs" />
+     <Compile Include="assets\Scripts\Projectile.cs" />
      <Compile Include="assets\Scripts\Wand.cs" />
      <None Include="assets\standard assets (mobile)\shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="assets\standard assets (mobile)\shaders\Miscellaneous Shaders\Mobile Background.shader" />
