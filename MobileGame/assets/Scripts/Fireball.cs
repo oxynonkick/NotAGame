@@ -4,6 +4,7 @@ using System.Collections;
 public class Fireball : MonoBehaviour {
 
 	public float Speed = 10;
+	public float lifeTime = 10;
 
 	GameObject player;
 
@@ -18,6 +19,7 @@ public class Fireball : MonoBehaviour {
 			transform.localScale = scale;			
 		}
 		rigidbody2D.velocity = new Vector2 (Speed, 0);
+		Invoke ("Destroy", lifeTime);
 	}
 
 	// Update is called once per frame
@@ -30,6 +32,10 @@ public class Fireball : MonoBehaviour {
 						colliderInfo.gameObject.SendMessage ("Hit");
 		if (colliderInfo.transform.name != "Player")
 						Destroy (gameObject);
+	}
+
+	void Destroy(){
+		Destroy (gameObject);
 	}
 }
 	
