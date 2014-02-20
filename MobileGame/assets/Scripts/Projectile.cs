@@ -30,11 +30,10 @@ public class Projectile : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter2D(Collision2D colliderInfo){
-		if (colliderInfo.transform.tag == "Enemy")
+				if (colliderInfo.transform.tag == "Enemy" || colliderInfo.transform.tag == "Player")
 						colliderInfo.gameObject.SendMessage ("Hit", new HitInfo (Damage, Speed, DamgeType));
-		if (colliderInfo.transform.name != "Player")
-						Destroy (gameObject);
-	}
+				Destroy (gameObject);
+		}
 
 	void Destroy(){
 		Destroy (gameObject);

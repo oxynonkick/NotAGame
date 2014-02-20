@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour {
 	public Transform PlayerCheck;
 	public LayerMask WhatToAttack;
 	public float HP = 2;
+	public float Damage = 1;
 	
 	private Vector3 _initialPosition;
 	private bool _facingRight = false;
@@ -16,6 +17,7 @@ public class EnemyController : MonoBehaviour {
 	private bool _needToAtack;
 	private bool _dead;
 	private float _deathSpeed;
+	private GameObject _colider;
 
 	// Use this for initialization
 	void Start () 
@@ -27,10 +29,12 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+			if (transform.position.y < -100)
+						Destroy (gameObject);
 				if (!_dead) {
 						_needToAtack = Physics2D.OverlapCircle (PlayerCheck.position, _playerCheckRadius, WhatToAttack);
 						if (_needToAtack) {	
-								_anim.SetBool ("Atack", true);	
+								_anim.SetBool ("Atack", true);
 								return;
 						}
 						_anim.SetBool ("Atack", false);
@@ -72,6 +76,18 @@ public class EnemyController : MonoBehaviour {
 		transform.localScale = scale;
 	}
 
+	void OnCollisionEnter2D(Collision2D colliderInfo){
+		_colider = colliderInfo.gameObject;
+				if (_needToAtack) {
+					Invoke ("Attack", 0.5f);
+				}
+		}
+
+	void Attack(){
+		if (_colider.tag == "Player" && _needToAtack) {
+			_colider.SendMessage ("Hit", new HitInfo (Damage, -10 * Mathf.Sign(transform.localScale.x), "Normal"));
+				}
+		}
 
 	void Hit(HitInfo info){
 		HP -= info.Damage;

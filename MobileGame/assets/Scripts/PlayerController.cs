@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float maxSpeed = 5;
+	public float HP = 10;
 	bool _facingRight = false;
 
 	bool grounded = false;
@@ -62,4 +63,13 @@ public class PlayerController : MonoBehaviour {
 		scale.x *= -1;
 		transform.localScale = scale;
 		}
+
+	void Hit(HitInfo info){
+		Debug.Log ("Hit");
+		HP -= info.Damage;
+		rigidbody2D.AddForce (new Vector2(info.ImpactSpeed * 100, 100));
+		if (HP <= 0) {
+			Debug.Log("You are dead");
+				}
+	}
 }
